@@ -1,0 +1,42 @@
+﻿@model Employee
+
+@{
+    ViewData["Title"] = "EditEmployee";
+}
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pt-2">
+            <h3 class="text-bg-primary"> Edit  Employee </h3>
+            <hr />
+            <div asp-validation-summary="All"></div>
+            <div class="mb-2">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-bg-danger"></span>
+                <hr />
+                <label asp-for="Email" class="from-control"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="from-control"></span>
+                <hr />
+                <label asp-for="Phone" class="from-control"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="from-control"></span>
+                <hr />
+                <label asp-for="CategoryId" class="from-control"></label>
+                <hr />
+                <select class="form-control" asp-for="CategoryId" asp-items="ViewBag.catItem"></select>
+                <hr />
+                <div class="align-content-center">
+                    <button type="submit" class=" btn btn-success" style="width:150px"> Save </button>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a asp-controller="Employee" asp-action="FindAllEmp" class="btn btn-danger" style="width:150px">
+                        Back
+                    </a>
+                </div>
+            </div>
+        </div>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

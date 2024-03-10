@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Employee>
+
+@{
+    ViewData["Title"] = "FindAllEmp";
+}
+<h3> Categories </h3>
+<div class="text-end">
+    <a asp-controller="Employee" asp-action="AddEmployee" class="btn btn-success">
+        <i class="bi bi-file-plus"></i>
+        &nbsp; Add new Employee
+    </a>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-active">
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Employee Email</th>
+            <th>Employee Phone</th>
+            <th>Category Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr class="table-active">
+                <td>@employee.Id</td>
+                <td>@employee.Name</td>
+                <td>@employee.Email</td>
+                <td>@employee.Phone</td>
+                <td>@employee.CategoryId</td>
+                <td>
+                    <a asp-controller="Employee" asp-action="EditEmployee" asp-route-id="@employee.Id" class=" btn-success">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="" asp-action="" asp-route-id="" class=" btn-danger">
+                        <i class="bi bi-trash3"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
