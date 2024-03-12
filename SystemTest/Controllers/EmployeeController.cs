@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -67,5 +68,35 @@ namespace SystemTest.Controllers
                 return View(employee);
             }
         }
-    }
+        [HttpGet]
+        public async Task<IActionResult> DeleteEmployee(int? id)
+        {
+            if(id==0 || id==null)
+            {
+                return NotFound();
+            }
+            SelectList catItem = _repo.select();
+            ViewBag.catItem = catItem;
+            var employee = _repo.FindById(id);
+            if(employee == null)
+            {
+                return NotFound();
+            }
+            return View(employee);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteEmployee(Employee employee)
+        {
+            if(ModelState.IsValid)
+            {
+                _repo.delete(employee);
+                return RedirectToAction("FindAllEmp");
+            }
+            else
+            {
+                return View(employee);
+            }
+        }
+    }   
 }

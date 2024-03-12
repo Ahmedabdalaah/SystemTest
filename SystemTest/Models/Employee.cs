@@ -13,7 +13,7 @@ namespace SystemTest.Models
         public string Email { get; set; }
         [Required]
         public string Phone { get; set; }
-        public Order? Order { get; set; }
+        public ICollection<Order>? Order { get; set; }
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public Category? Category { get; set; }

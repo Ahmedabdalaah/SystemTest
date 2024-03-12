@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Order>
+
+@{
+    ViewData["Title"] = "FindAllOrder";
+}
+<h3> Orders </h3>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-active">
+            <th>Order Id</th>
+            <th>Order Name</th>
+            <th>Order Describtion</th>
+            <th>Employee Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr class="table-active">
+                <td>@order.Id</td>
+                <td>@order.Name</td>
+                <td>@order.Description</td>
+                <td>@order.EmployeeId</td>
+                <td>
+                    <a asp-controller="" asp-action="" asp-route-id="" class=" btn-success">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="" asp-action="" asp-route-id="" class=" btn-danger">
+                        <i class="bi bi-trash3"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+

@@ -14,19 +14,19 @@ namespace SystemTest.Data
         public DbSet<Category> categories { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+
             modelBuilder.Entity<Category>().HasData(
                 new Category()
-                {  
+                {
                     Id = 1,
                     Name = "Human Resorces"
                 }, new Category()
                 {
-                    Id=2,
-                    Name="Product Manager"
-            });
+                    Id = 2,
+                    Name = "Product Manager"
+                });
             base.OnModelCreating(modelBuilder);
-            foreach ( var relationship in modelBuilder.Model.GetEntityTypes()
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(x => x.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;

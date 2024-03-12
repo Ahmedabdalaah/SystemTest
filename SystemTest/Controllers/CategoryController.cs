@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SystemTest.Models;
 using SystemTest.Services;
 
 namespace SystemTest.Controllers
 {
+
+    [Authorize(Roles ="Admin")]
     public class CategoryController : Controller
     {
         private readonly IMainRepository<Category> _repo;
@@ -12,6 +15,7 @@ namespace SystemTest.Controllers
         {
             _repo = repo;
         }
+
         public async Task<IActionResult> FindAll()
         {
             var categories= await _repo.GetAll();
