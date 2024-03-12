@@ -12,6 +12,7 @@ namespace SystemTest.Controllers
         {
             _repo = repo;
         }
+
         public async Task<IActionResult> FindAll()
         {
             var categories= await _repo.GetAll();
