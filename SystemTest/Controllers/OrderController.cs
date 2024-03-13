@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
+using System.Data.Entity;
+using System.Security.Principal;
 using SystemTest.Models;
 using SystemTest.Services;
 
@@ -27,7 +32,6 @@ namespace SystemTest.Controllers
         {
             if(ModelState.IsValid)
             {
-                order.EmployeeId = 1;
                 _repo.add(order);
                 return RedirectToAction("FindAllOrder");
             }
@@ -37,9 +41,9 @@ namespace SystemTest.Controllers
             }
         }
         [HttpGet]
-        public async Task<IActionResult> EditOrder(int? id=7)
+        public async Task<IActionResult> EditOrder(int? id)
         {
-            if(id==0 || id == null)
+            if (id==0 || id == null)
             {
                 return NotFound();
             }
@@ -57,7 +61,6 @@ namespace SystemTest.Controllers
             if(ModelState.IsValid)
             {
                 order.Id = 7;
-                order.EmployeeId = 1;
                 _repo.update(order);
                 return RedirectToAction("FindAllOrder");
             }
@@ -84,7 +87,6 @@ namespace SystemTest.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteOrder(Order order)
         {
-            order.EmployeeId = 1;
             order.Id = 6;
             if(ModelState.IsValid)
             {

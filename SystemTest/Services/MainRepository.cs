@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq.Expressions;
+using System.Security.Principal;
 using SystemTest.Data;
 using SystemTest.Models;
 
@@ -44,6 +48,11 @@ namespace SystemTest.Services
             List<Category> categ = _context.categories.ToList();
             SelectList catItem = new SelectList(categ, "Id", "Name", selected);
             return catItem;
+        }
+
+        public  T GetByPhone(Expression<Func<T, bool>> predicate)
+        {
+            return _context.Set<T>().Where(predicate).FirstOrDefault();
         }
     }
 }

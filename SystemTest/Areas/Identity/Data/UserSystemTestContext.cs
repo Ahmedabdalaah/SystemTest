@@ -20,7 +20,7 @@ public class UserSystemTestContext : IdentityDbContext<IdentityUser>
         builder.Entity<IdentityRole>().HasData(
             new IdentityRole()
             {
-                Id = Guid.NewGuid().ToString(),
+               Id = Guid.NewGuid().ToString(),
                 Name = "Admin",
                 NormalizedName = "admin",
                 ConcurrencyStamp = Guid.NewGuid().ToString()

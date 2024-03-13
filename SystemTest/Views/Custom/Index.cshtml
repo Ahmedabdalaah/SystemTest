@@ -1,0 +1,36 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Index";
+}
+<form id="myForm" asp-action="Index" method="post">
+    Code: <input type="text" name="firstname" size="20"><br />
+    <br />
+    <input type="button" onclick="formSubmit()" value="Submit">
+</form>
+
+<script type="text/javascript">
+    function formSubmit() {
+        document.getElementById("myForm").submit()
+    }
+</script>
+@{
+    var data = (Order)ViewData["Message"];
+}
+@if(data != null)
+{
+    <div class="grid-container">
+        <div>
+            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header">@data.Id</div>
+                <div class="card-body">
+                    <h4 class="card-title">@data.Name</h4>
+                    <p class="card-text">@data.Description</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>Id: @data.Id</h3>
+    <h3>RecordName: @data.Name</h3>
+    <h3>RecordDetail: @data.Description</h3>
+}
+
