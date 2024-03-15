@@ -17,12 +17,12 @@ namespace SystemTest.Controllers
         {
             _repo = repo;
         }
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> FindAllOrder()
         {
             var order = await _repo.GetAll();
             return View(order);
         }
+        [Authorize(Roles = "Employee")]
         [HttpGet]
         public async Task<IActionResult> AddOrder()
         {
@@ -35,7 +35,7 @@ namespace SystemTest.Controllers
             if(ModelState.IsValid)
             {
                 _repo.add(order);
-                return RedirectToAction("FindAllOrder");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -56,16 +56,14 @@ namespace SystemTest.Controllers
             }
             return View(order);
         }
-        [Authorize(Roles = "ُEmployee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditOrder(Order order)
         {
             if(ModelState.IsValid)
             {
-                order.Id = 7;
                 _repo.update(order);
-                return RedirectToAction("FindAllOrder");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -73,7 +71,7 @@ namespace SystemTest.Controllers
             }
         }
         [HttpGet]
-        public ActionResult DeleteOrder(int? id=6)
+        public ActionResult DeleteOrder(int? id)
         {
             if(id==0 || id == null)
             {
@@ -90,11 +88,10 @@ namespace SystemTest.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteOrder(Order order)
         {
-            order.Id = 6;
             if(ModelState.IsValid)
             {
                 _repo.delete(order);
-                return RedirectToAction("FindAllOrder");
+                return RedirectToAction("Index");
             }
             else
             {

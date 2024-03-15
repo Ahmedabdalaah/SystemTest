@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Index";
 }
+
 <form id="myForm" class="form-label mt-4"  asp-action="Index" method="post">
         Code: <input type="text" class="form-control" name="code"><br />
     <br />
@@ -27,6 +28,11 @@
                 <div class="card-body">
                     <h4 class="card-title">@data.Name</h4>
                     <p class="card-text">@data.Description</p>
+                    <p class="card-text">@data.EmployeeId</p>
+                    &nbsp; &nbsp;
+                    <a asp-controller="Order" asp-action="AddOrder" asp-route-EmployeeId="@data.EmployeeId" class=" btn-success">
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
                     &nbsp; &nbsp;
                      <a asp-controller="Order" asp-action="EditOrder" asp-route-id="@data.Id" class=" btn-success">
                         <i class="bi bi-pencil"></i>
