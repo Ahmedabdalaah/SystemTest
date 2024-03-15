@@ -3,21 +3,21 @@
 @{
     ViewData["Title"] = "FindAllEmp";
 }
-<h3> Categories </h3>
+<h3>  الموظفين </h3>
 <div class="text-end">
     <a asp-controller="Employee" asp-action="AddEmployee" class="btn btn-success">
         <i class="bi bi-file-plus"></i>
-        &nbsp; Add new Employee
+        &nbsp; إضافة موظف جديد
     </a>
 </div>
 <table class="table table-hover">
     <thead>
         <tr class="table-active">
-            <th>Employee Id</th>
-            <th>Employee Name</th>
-            <th>Employee Email</th>
-            <th>Employee Phone</th>
-            <th>Category Id</th>
+            <th>كود الموظف</th>
+            <th>اسم الموظف</th>
+            <th>ايميل الموظف</th>
+            <th>رقم الهاتف</th>
+            <th>كود القسم التابع له</th>
         </tr>
     </thead>
     <tbody>

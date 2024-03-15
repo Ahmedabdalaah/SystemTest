@@ -2,12 +2,11 @@
 @{
     ViewData["Title"] = "Index";
 }
-<form id="myForm" asp-action="Index" method="post">
-    Code: <input type="text" name="firstname" size="20"><br />
+<form id="myForm" class="form-label mt-4"  asp-action="Index" method="post">
+        Code: <input type="text" class="form-control" name="code"><br />
     <br />
-    <input type="button" onclick="formSubmit()" value="Submit">
+        <input type="button" class="form-control"  style="background-color:black" onclick="formSubmit()" value="عرض الطلب">
 </form>
-
 <script type="text/javascript">
     function formSubmit() {
         document.getElementById("myForm").submit()
@@ -18,19 +17,28 @@
 }
 @if(data != null)
 {
-    <div class="grid-container">
+    <div class="grid-container" style="text-align:center">
         <div>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp;
             <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">@data.Id</div>
                 <div class="card-body">
                     <h4 class="card-title">@data.Name</h4>
                     <p class="card-text">@data.Description</p>
+                    &nbsp; &nbsp;
+                     <a asp-controller="Order" asp-action="EditOrder" asp-route-id="@data.Id" class=" btn-success">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    &nbsp; &nbsp;
+                    <a asp-controller="Order" asp-action="DeleteOrder" asp-route-id="@data.Id" class=" btn-danger">
+                        <i class="bi bi-trash3"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <h3>Id: @data.Id</h3>
-    <h3>RecordName: @data.Name</h3>
-    <h3>RecordDetail: @data.Description</h3>
 }
+
 

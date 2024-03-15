@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SystemTest.Models
 {
@@ -7,6 +8,7 @@ namespace SystemTest.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [DisplayName("اسم القسم")]
         public string Name { get; set; }
         public ICollection<Employee>? Employees { get; set; }
     }

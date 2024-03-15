@@ -22,15 +22,16 @@ namespace SystemTest.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(int? id)
         {
-            id = Int32.Parse(HttpContext.Request.Form["firstname"].ToString());
-            var employee = _repo.GetByPhone(x => x.EmployeeId == id);
-            if(employee != null)
+            id = Int32.Parse(HttpContext.Request.Form["code"].ToString());
+            var order = _repo.GetByPhone(x => x.EmployeeId == id);
+            if(order != null)
             {
                 Order rec = new Order
                 {
-                    Id = employee.Id,
-                    Name = employee.Name,
-                    Description = employee.Description
+                    Id = order.Id,
+                    Name = order.Name,
+                    Description = order.Description,
+                    EmployeeId = order.EmployeeId
                 };
 
                 ViewBag.Message = rec;

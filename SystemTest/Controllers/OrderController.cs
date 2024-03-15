@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
@@ -16,6 +17,7 @@ namespace SystemTest.Controllers
         {
             _repo = repo;
         }
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> FindAllOrder()
         {
             var order = await _repo.GetAll();
@@ -54,6 +56,7 @@ namespace SystemTest.Controllers
             }
             return View(order);
         }
+        [Authorize(Roles = "ُEmployee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditOrder(Order order)
